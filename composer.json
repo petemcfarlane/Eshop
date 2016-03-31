@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Eshop\\": "src/Eshop/"
+        }
+    },
+    "require-dev": {
+        "behat/behat": "^3.1",
+        "phpspec/phpspec": "^2.5"
+    }
+}
