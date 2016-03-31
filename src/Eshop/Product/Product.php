@@ -14,13 +14,20 @@ class Product
      */
     private $category;
 
+    /**
+     * @param string   $title
+     * @param Category $category
+     */
     public function __construct(string $title, Category $category)
     {
         $this->title = $title;
         $this->category = $category;
     }
 
-    public function getCategory()
+    /**
+     * @return Category
+     */
+    public function getCategory(): Category
     {
         return $this->category;
     }

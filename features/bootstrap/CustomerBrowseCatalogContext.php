@@ -1,9 +1,7 @@
 <?php
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Eshop\Product\Category;
 use Eshop\Product\Product;
@@ -16,12 +14,12 @@ use Eshop\Shop\Basket;
 class CustomerBrowseCatalogContext implements Context, SnippetAcceptingContext
 {
     /**
-     * @var \Eshop\Product\ProductCatalog
+     * @var ProductCatalog
      */
     private $productCatalog;
 
     /**
-     * @var
+     * @var Product
      */
     private $product;
 
@@ -30,6 +28,9 @@ class CustomerBrowseCatalogContext implements Context, SnippetAcceptingContext
      */
     private $products = [];
 
+    /**
+     * @var Basket
+     */
     private $basket;
 
     /**
@@ -77,6 +78,7 @@ class CustomerBrowseCatalogContext implements Context, SnippetAcceptingContext
     public function iBrowseTheProductCatalogFor(Category $category)
     {
         $this->products = $this->productCatalog->browseCategory($category);
+
         if (empty($this->products)) {
             throw new RuntimeException(sprintf("No products for category %s", $category));
         }
@@ -87,11 +89,11 @@ class CustomerBrowseCatalogContext implements Context, SnippetAcceptingContext
      */
     public function iFindAShirtILike()
     {
-        $product = reset($this->products);
-        if (! $product instanceof Product) {
+        $this->product = reset($this->products); // just take the first product for now
+
+        if (! $this->product instanceof Product) {
             throw new RuntimeException("Didn't find a product");
         }
-        $this->product = $product;
     }
 
     /**

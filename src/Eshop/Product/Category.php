@@ -17,11 +17,11 @@ class Category
     }
 
     /**
-     * @param $category
+     * @param string $category
      *
      * @return Category
      */
-    public static function fromString($category)
+    public static function fromString(string $category)
     {
         $newCategory = new Category();
 

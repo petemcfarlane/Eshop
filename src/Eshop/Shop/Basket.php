@@ -6,15 +6,26 @@ use Eshop\Product\Product;
 
 class Basket
 {
-    private $items = [];
+    /**
+     * @var Product[]
+     */
+    private $products = [];
 
+    /**
+     * @param Product $product
+     */
     public function add(Product $product)
     {
-        $this->items[] = $product;
+        $this->products[] = $product;
     }
 
+    /**
+     * @param Product $product
+     *
+     * @return bool
+     */
     public function contains(Product $product): bool
     {
-        return in_array($product, $this->items);
+        return in_array($product, $this->products);
     }
 }
